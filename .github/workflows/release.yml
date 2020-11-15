@@ -1,8 +1,10 @@
 name: Release
 
 on:
-  repository_dispatch:
-    types: [trigger-release]
+  push:
+    branches:
+      - release
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
@@ -16,12 +18,9 @@ jobs:
           - name: Checkout
             uses: actions/checkout@v2
             with:
-              with:
-                ref: ${{ github.event.client_payload.ref }}
                 fetch-depth: 0
                 persist-credentials: false
                 submodules: true
-          - run: echo "releasing ${{ github.event.client_payload.sha }} off ${{ github.event.client_payload.ref }}"
 
           - name: Install Rust Stable
             uses: actions-rs/toolchain@v1
@@ -29,6 +28,12 @@ jobs:
                 profile: minimal
                 toolchain: stable
                 override: true
+
+          - name: Install Semantic Release for Rust
+            uses: actions-rs/cargo@v1
+            with:
+                command: install
+                args: semantic-release-rust --version 1.0.0-alpha.7
 
           # The release build is used in the Semantic Release step
           - name: Build

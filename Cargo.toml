@@ -10,7 +10,7 @@ repository    = "https://github.com/ChristianMoesl/btor2tools-sys"
 homepage      = "https://github.com/ChristianMoesl/btor2tools-sys"
 links         = "btor2parser"
 edition       = "2018"
-version       = "0.1.0"
+version       = "0.0.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
