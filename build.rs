@@ -60,10 +60,10 @@ fn main() {
             )
         })
         // export only these whitelisted types/functions
-        .whitelist_function("btor2parser_.*")
-        .whitelist_type("Btor2.*")
-        .whitelist_function("fopen")
-        .whitelist_function("fclose")
+        .allowlist_function("btor2parser_.*")
+        .allowlist_type("Btor2.*")
+        .allowlist_function("fopen")
+        .allowlist_function("fclose")
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
