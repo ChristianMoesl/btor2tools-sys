@@ -8,6 +8,10 @@ use std::{
 const EXPORTED_HEADERS: [&str; 1] = ["src/btor2parser/btor2parser.h"];
 
 fn main() {
+    Command::new("git")
+        .args(["submodule", "update", "--init"])
+        .status()
+        .expect("Failed to update submodules.");
     // we are not allowed to modify files outside of OUT_DIR,
     // so we have to copy everything to OUT_DIR before we can build it
     let immutable_source_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("btor2tools");
